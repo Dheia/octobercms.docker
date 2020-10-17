@@ -1,0 +1,40 @@
+version: '3'
+
+networks:
+  main:
+    driver: bridge
+
+volumes:
+  disk:
+    driver: local
+
+services:
+  app:
+    build:
+      context: ./docker/php/
+      args:
+        - PUID=${PUID}
+        - PGID=${PGID}
+    ports:
+      - 9000:9000
+    volumes:
+      - disk:/app
+      - ./theme:/app/themes/${THEME_AUTHOR}:cached
+      - ./plugins:/app/plugins/${PLUGINS_AUTHOR}:cached
+    networks:
+      - main
+  apache:
+    image: docker.io/bitnami/apache:2.4-debian-10
+    ports:
+      - 80:8080
+      - 443:8443
+    volumes:
+      - ./docker/apache/httpd.conf:/opt/bitnami/apache/conf/httpd.conf:ro
+      - ./docker/apache/vhost.conf:/vhosts/custom-vhost.conf:ro
+      - disk:/app
+      - ./theme:/app/themes/${THEME_AUTHOR}:cached
+      - ./plugins:/app/plugins/${PLUGINS_AUTHOR}:cached
+    depends_on:
+      - app
+    networks:
+      - main
