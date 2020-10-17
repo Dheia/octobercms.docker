@@ -13,14 +13,15 @@ services:
     build:
       context: ./docker/php/
       args:
+        - SOURCE_ROOT_PATH=${SOURCE_ROOT_PATH}
         - PUID=${PUID}
         - PGID=${PGID}
     ports:
       - 9000:9000
     volumes:
       - disk:/app
-      - ./theme:/app/themes/${THEME_AUTHOR}:cached
-      - ./plugins:/app/plugins/${PLUGINS_AUTHOR}:cached
+      - ${SOURCE_ROOT_PATH}theme:/app/themes/${THEME_AUTHOR}:cached
+      - ${SOURCE_ROOT_PATH}plugins:/app/plugins/${PLUGINS_AUTHOR}:cached
     networks:
       - main
   apache:
@@ -32,8 +33,8 @@ services:
       - ./docker/apache/httpd.conf:/opt/bitnami/apache/conf/httpd.conf:ro
       - ./docker/apache/vhost.conf:/vhosts/custom-vhost.conf:ro
       - disk:/app
-      - ./theme:/app/themes/${THEME_AUTHOR}:cached
-      - ./plugins:/app/plugins/${PLUGINS_AUTHOR}:cached
+      - ${SOURCE_ROOT_PATH}theme:/app/themes/${THEME_AUTHOR}:cached
+      - ${SOURCE_ROOT_PATH}plugins:/app/plugins/${PLUGINS_AUTHOR}:cached
     depends_on:
       - app
     networks:

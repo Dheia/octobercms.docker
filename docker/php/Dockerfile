@@ -3,6 +3,9 @@ FROM docker.io/bitnami/php-fpm:7.4-debian-10
 RUN apt-get update
 RUN apt-get install nano
 
+ARG SOURCE_ROOT_PATH=./
+ENV SOURCE_ROOT_PATH ${SOURCE_ROOT_PATH}
+
 ARG PUID=1000
 ENV PUID ${PUID}
 
