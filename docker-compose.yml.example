@@ -21,7 +21,7 @@ services:
     ports:
       - 9000:9000
     volumes:
-      - disk:/app
+      - ${OCTOBER_CMS_PATH}:/app
       - ${SOURCE_ROOT_PATH}theme:/app/themes/${THEME_AUTHOR}:cached
       - ${SOURCE_ROOT_PATH}plugins:/app/plugins/${PLUGINS_AUTHOR}:cached
     networks:
@@ -36,7 +36,7 @@ services:
     volumes:
       - ./docker/apache/httpd.conf:/opt/bitnami/apache/conf/httpd.conf:ro
       - ./docker/apache/vhost.conf:/vhosts/custom-vhost.conf:ro
-      - disk:/app
+      - ${OCTOBER_CMS_PATH}:/app
       - ${SOURCE_ROOT_PATH}theme:/app/themes/${THEME_AUTHOR}:cached
       - ${SOURCE_ROOT_PATH}plugins:/app/plugins/${PLUGINS_AUTHOR}:cached
     depends_on:
