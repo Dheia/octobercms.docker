@@ -1,10 +1,13 @@
 # Docker / OctoberCMS
 Docker for OctoberCMS *(Based on Bitnami images)*
 
-### To begin using it
-1. Copy `.env.example` to `.env`
-2. Run `docker-compose up -d`
-3. Run `docker-compose exec app php artisan october:install`
+### To install it
+```
+$ cp .env.example .env
+$ cp docker-compose.yml.example docker-compose.yml
+$ docker-compose up -d
+$ docker-compose exec app php artisan october:install
+```
 
 ### To access shell of docker
 ```
