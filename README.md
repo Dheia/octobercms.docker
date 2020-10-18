@@ -1,7 +1,7 @@
 # Docker / OctoberCMS
 Docker for OctoberCMS *(Based on Bitnami images)*
 
-### To install it
+### How to setup
 ```
 $ cp .env.example .env
 $ cp docker-compose.yml.example docker-compose.yml
@@ -9,12 +9,14 @@ $ docker-compose up -d
 $ docker-compose exec app php artisan october:install
 ```
 
-### To access shell of docker
+### Locations
 ```
-docker-compose exec app bash
+http://localhost or https://localhost # The OctoberCMS
+http://localhost:1080 # The Maildev
 ```
 
-### To access shell as root
+### How to access shell of docker
 ```
-docker-compose exec -u root app bash
+docker-compose exec app bash # As main user
+docker-compose exec -u root app bash # As root
 ```
