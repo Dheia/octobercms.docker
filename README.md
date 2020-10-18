@@ -1,7 +1,7 @@
 # Docker / OctoberCMS
 Docker for OctoberCMS *(Based on Bitnami images)*
 
-This repository is created to use **OctoberCMS** with on **docker**,
+This repository is created to use **OctoberCMS** on **docker**,
 and also to use it as **submodule** for **themes or plugins development**.
 
 ### How to setup

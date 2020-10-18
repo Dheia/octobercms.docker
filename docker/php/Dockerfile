@@ -1,5 +1,7 @@
 FROM docker.io/bitnami/php-fpm:7.4-debian-10
 
+RUN echo "opcache.revalidate_freq = 0" >> /opt/bitnami/php/etc/php.ini
+
 RUN apt-get update
 RUN apt-get install nano
 

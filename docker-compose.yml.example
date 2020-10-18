@@ -31,7 +31,6 @@ services:
       - ${APACHE_HTTP_PORT}:8080
       - ${APACHE_HTTPS_PORT}:8443
     volumes:
-      - ./docker/apache/httpd.conf:/opt/bitnami/apache/conf/httpd.conf:ro
       - ./docker/apache/vhost.conf:/vhosts/custom-vhost.conf:ro
       - disk:/app
     depends_on:
